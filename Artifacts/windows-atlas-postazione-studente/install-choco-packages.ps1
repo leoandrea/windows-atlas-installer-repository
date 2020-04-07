@@ -114,9 +114,30 @@ function Install-Packages
         {
             $checkSumFlags = $checkSumFlags + " --ignore-checksums "
         }
-        $expression = "$ChocoExePath install -y -f --acceptlicense $checkSumFlags --no-progress --stoponfirstfailure $_ --force"
+
+		$packageDestPath = "$HOME/Desktop/InstallDir/"
+		md $packageDestPath
+		$nupkgurl = "https://atlas-testing.webscience.it/artifacts/AtlasPostazioneStudente/atlaspostazionestudente.3.0.0.nupkg"
+		$nuspecurl= "https://atlas-testing.webscience.it/artifacts/AtlasPostazioneStudente/atlaspostazionestudente.nuspec"
+		$nuspecdest = $packageDestPath + "atlaspostazionestudente.nuspec"
+		$nupkgdest = $packageDestPath + "atlaspostazionestudente.3.0.0.nupkg"
+		Download-Data -DataUrl $nupkgurl -DestPath $nupkgdest
+		Download-Data -DataUrl $nuspecurl -DestPath $nuspecdest
+		
+        $expression = "$ChocoExePath install -y -f --acceptlicense $checkSumFlags --no-progress --stoponfirstfailure $_ -dv --force -s " + $packageDestPath
         Invoke-ExpressionImpl -Expression $expression
     }
+}
+
+function Download-Data
+{
+    [CmdletBinding()]
+    param(
+        [string] $DataUrl,
+		[string] $DestPath
+    )
+	$wc = New-Object System.Net.WebClient
+	$wc.DownloadFile($DataUrl, $DestPath)
 }
 
 function Invoke-ExpressionImpl
@@ -129,7 +150,7 @@ function Invoke-ExpressionImpl
     # This call will normally not throw. So, when setting -ErrorVariable it causes it to throw.
     # The variable $expError contains whatever is sent to stderr.
     iex $Expression -ErrorVariable expError
-
+	
     # This check allows us to capture cases where the command we execute exits with an error code.
     # In that case, we do want to throw an exception with whatever is in stderr. Normally, when
     # Invoke-Expression throws, the error will come the normal way (i.e. $Error) and pass via the
