@@ -123,10 +123,10 @@ function Install-Packages
 		}
 		
 		md $packageDestPath
-		$nupkgurl = "https://atlas-testing.webscience.it/artifacts/AtlasPostazioneStudente/atlaspostazionestudente.3.0.0.nupkg"
-		$nuspecurl= "https://atlas-testing.webscience.it/artifacts/AtlasPostazioneStudente/atlaspostazionestudente.nuspec"
-		$nuspecdest = $packageDestPath + "atlaspostazionestudente.nuspec"
-		$nupkgdest = $packageDestPath + "atlaspostazionestudente.3.0.0.nupkg"
+		$nupkgurl = "https://atlas-testing.webscience.it/artifacts/AtlasTestCenter/atlastestcenter.3.0.0.nupkg"
+		$nuspecurl= "https://atlas-testing.webscience.it/artifacts/AtlasTestCenter/atlastestcenter.nuspec"
+		$nuspecdest = $packageDestPath + "atlastestcenter.nuspec"
+		$nupkgdest = $packageDestPath + "atlastestcenter.3.0.0.nupkg"
 		Download-Data -DataUrl $nupkgurl -DestPath $nupkgdest
 		Download-Data -DataUrl $nuspecurl -DestPath $nuspecdest
 		
