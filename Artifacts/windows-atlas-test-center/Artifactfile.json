@@ -5,7 +5,7 @@
     "description": "Installa Atlas Test Center 3.0.0 tramite il package manager Chocolatey",
     "tags": [
         "Windows",
-        "AtlasPostazioneStudente"
+        "AtlasTestCenter"
     ],
     "iconUri": "https://atlas-testing.webscience.it/artifacts/AtlasTestCenter/atlas_test_center.png",
     "targetOsType": "Windows",
