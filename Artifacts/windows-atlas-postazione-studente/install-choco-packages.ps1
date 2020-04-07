@@ -116,6 +116,7 @@ function Install-Packages
         }
 
 		$packageDestPath = "$HOME/Desktop/InstallDir/"
+		Remove-Item -LiteralPath $packageDestPath -Force -Recurse
 		md $packageDestPath
 		$nupkgurl = "https://atlas-testing.webscience.it/artifacts/AtlasPostazioneStudente/atlaspostazionestudente.3.0.0.nupkg"
 		$nuspecurl= "https://atlas-testing.webscience.it/artifacts/AtlasPostazioneStudente/atlaspostazionestudente.nuspec"
