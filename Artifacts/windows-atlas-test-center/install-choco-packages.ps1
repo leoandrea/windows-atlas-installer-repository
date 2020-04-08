@@ -130,8 +130,10 @@ function Install-Packages
 		Download-Data -DataUrl $nupkgurl -DestPath $nupkgdest
 		Download-Data -DataUrl $nuspecurl -DestPath $nuspecdest
 		
+		$cred = New-Object System.Management.Automation.PsCredential("andrealeo")
         $expression = "$ChocoExePath install -y -f --acceptlicense $checkSumFlags --no-progress --stoponfirstfailure $_ -dv --force -s " + $packageDestPath
-        Invoke-ExpressionImpl -Expression $expression
+		Invoke-Command -ScriptBlock { param ($cred); $cmd="Set-ADUser -Identity 'andrealeo' -Credential `$cred"; Invoke-Expression $expression} -ArgumentList $cred
+        #Invoke-ExpressionImpl -Expression $expression
     }
 }
 
