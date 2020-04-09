@@ -34,7 +34,7 @@ $ProgressPreference = 'SilentlyContinue'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 # Expected path of the choco.exe file.
-$choco = "$Env:ProgramData/chocolatey/choco.exe"
+$choco = "C:\ProgramData\chocolatey\choco.exe"
 
 ###################################################################################################
 #
@@ -114,26 +114,27 @@ function Install-Packages
         {
             $checkSumFlags = $checkSumFlags + " --ignore-checksums "
         }
-
+		#Copy-Item "C:\Users\andrealeo\Desktop\InstallDir"-Destination "$HOME/Desktop/InstallDir" -Recurse
 		$packageDestPath = "$HOME/Desktop/InstallDir/"
-		$packageDestPathExists = Test-Path $packageDestPath -PathType Container
-		if ($packageDestPathExists)
-		{
-			Remove-Item -LiteralPath $packageDestPath -Force -Recurse
-		}
+		#$packageDestPathExists = Test-Path $packageDestPath -PathType Container
+		#if ($packageDestPathExists)
+		#{
+		#	Remove-Item -LiteralPath $packageDestPath -Force -Recurse
+		#}
 		
-		md $packageDestPath
-		$nupkgurl = "https://atlas-testing.webscience.it/artifacts/AtlasTestCenter/atlastestcenter.3.0.0.nupkg"
-		$nuspecurl= "https://atlas-testing.webscience.it/artifacts/AtlasTestCenter/atlastestcenter.nuspec"
-		$nuspecdest = $packageDestPath + "atlastestcenter.nuspec"
-		$nupkgdest = $packageDestPath + "atlastestcenter.3.0.0.nupkg"
-		Download-Data -DataUrl $nupkgurl -DestPath $nupkgdest
-		Download-Data -DataUrl $nuspecurl -DestPath $nuspecdest
-		
-		$cred = New-Object System.Management.Automation.PsCredential("andrealeo")
-        $expression = "$ChocoExePath install -y -f --acceptlicense $checkSumFlags --no-progress --stoponfirstfailure $_ -dv --force -s " + $packageDestPath
-		Invoke-Command -ScriptBlock { param ($cred); $cmd="Set-ADUser -Identity 'andrealeo' -Credential `$cred"; Invoke-Expression $expression} -ArgumentList $cred
-        #Invoke-ExpressionImpl -Expression $expression
+		#md $packageDestPath
+		#$nupkgurl = "https://atlas-testing.webscience.it/artifacts/AtlasTestCenter/atlastestcenter.3.0.0.nupkg"
+		#$nuspecurl= "https://atlas-testing.webscience.it/artifacts/AtlasTestCenter/atlastestcenter.nuspec"
+		#$nuspecdest = $packageDestPath + "atlastestcenter.nuspec"
+		#$nupkgdest = $packageDestPath + "atlastestcenter.3.0.0.nupkg"
+		#Download-Data -DataUrl $nupkgurl -DestPath $nupkgdest
+		#Download-Data -DataUrl $nuspecurl -DestPath $nuspecdest
+	$env:UserName
+$env:UserDomain
+$env:UserComputerName
+	$expression = "$ChocoExePath install -y -f --acceptlicense $checkSumFlags --no-progress --stoponfirstfailure $_ -dv --force -s " + $packageDestPath
+Get-PSCallStack
+    	Invoke-ExpressionImpl -Expression $expression
     }
 }
 
@@ -215,6 +216,7 @@ try
     Install-Packages -ChocoExePath "$choco" -Packages $Packages
 
     Write-Host "`nThe artifact was applied successfully.`n"
+
 }
 finally
 {
