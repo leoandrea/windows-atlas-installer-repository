@@ -120,7 +120,7 @@ function Install-Packages
 		if ($packageDestPathExists)
 		{
 			Remove-Item -LiteralPath $packageDestPath -Force -Recurse
-	#}
+		}
 		
 		md $packageDestPath
 		$nupkgurl = "https://atlas-testing.webscience.it/artifacts/AtlasTestCenter/atlastestcenter.3.0.0.nupkg"
