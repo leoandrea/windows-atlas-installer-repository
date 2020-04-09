@@ -91,14 +91,14 @@ function Invoke-ChocolateyPackageInstaller
 
     $secPassword = ConvertTo-SecureString -String $Password -AsPlainText -Force
     $credential = New-Object System.Management.Automation.PSCredential("$env:COMPUTERNAME\$($UserName)", $secPassword)
-    $command = "$PSScriptRoot\install-choco-packages.ps1 atlastestcenter"
+    $command = "$PSScriptRoot\install-choco-packages.ps1"
 	
-    #Invoke-Command -ComputerName $env:COMPUTERNAME -Credential $credential -ScriptBlock {param($command, $arguments) Start-Process -FilePath $command -ArgumentList $arguments} -ArgumentList ($command, $arguments)
+    Invoke-Command -ComputerName $env:COMPUTERNAME -Credential $credential -ScriptBlock {param($command, $arguments) Start-Process -FilePath $command -ArgumentList $arguments} -ArgumentList ($command, $arguments)
 
-    #$s = New-PSSession -ComputerName $env:ComputerName -Credential($credential)
-    #Invoke-Command -Session $s -FilePath $command -ArgumentList $PackageList
+    $s = New-PSSession -ComputerName $env:ComputerName -Credential($credential)
+    Invoke-Command -Session $s -FilePath $command -ArgumentList $PackageList
 
-    invoke-expression $command
+    #invoke-expression $command
 }
 
 $Password = Get-TempPassword

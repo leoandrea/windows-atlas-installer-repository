@@ -114,7 +114,7 @@ function Install-Packages
         {
             $checkSumFlags = $checkSumFlags + " --ignore-checksums "
         }
-		Copy-Item "C:\Users\andrealeo\Desktop\InstallDir"-Destination "$HOME/Desktop/InstallDir" -Recurse
+
 		$packageDestPath = "$HOME/Desktop/InstallDir/"
 		$packageDestPathExists = Test-Path $packageDestPath -PathType Container
 		if ($packageDestPathExists)
