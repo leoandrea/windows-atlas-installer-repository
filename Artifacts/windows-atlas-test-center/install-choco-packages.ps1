@@ -114,26 +114,24 @@ function Install-Packages
         {
             $checkSumFlags = $checkSumFlags + " --ignore-checksums "
         }
-		#Copy-Item "C:\Users\andrealeo\Desktop\InstallDir"-Destination "$HOME/Desktop/InstallDir" -Recurse
+		Copy-Item "C:\Users\andrealeo\Desktop\InstallDir"-Destination "$HOME/Desktop/InstallDir" -Recurse
 		$packageDestPath = "$HOME/Desktop/InstallDir/"
-		#$packageDestPathExists = Test-Path $packageDestPath -PathType Container
-		#if ($packageDestPathExists)
-		#{
-		#	Remove-Item -LiteralPath $packageDestPath -Force -Recurse
-		#}
+		$packageDestPathExists = Test-Path $packageDestPath -PathType Container
+		if ($packageDestPathExists)
+		{
+			Remove-Item -LiteralPath $packageDestPath -Force -Recurse
+	#}
 		
-		#md $packageDestPath
-		#$nupkgurl = "https://atlas-testing.webscience.it/artifacts/AtlasTestCenter/atlastestcenter.3.0.0.nupkg"
-		#$nuspecurl= "https://atlas-testing.webscience.it/artifacts/AtlasTestCenter/atlastestcenter.nuspec"
-		#$nuspecdest = $packageDestPath + "atlastestcenter.nuspec"
-		#$nupkgdest = $packageDestPath + "atlastestcenter.3.0.0.nupkg"
-		#Download-Data -DataUrl $nupkgurl -DestPath $nupkgdest
-		#Download-Data -DataUrl $nuspecurl -DestPath $nuspecdest
-	$env:UserName
-$env:UserDomain
-$env:UserComputerName
-	$expression = "$ChocoExePath install -y -f --acceptlicense $checkSumFlags --no-progress --stoponfirstfailure $_ -dv --force -s " + $packageDestPath
-Get-PSCallStack
+		md $packageDestPath
+		$nupkgurl = "https://atlas-testing.webscience.it/artifacts/AtlasTestCenter/atlastestcenter.3.0.0.nupkg"
+		$nuspecurl= "https://atlas-testing.webscience.it/artifacts/AtlasTestCenter/atlastestcenter.nuspec"
+		$nuspecdest = $packageDestPath + "atlastestcenter.nuspec"
+		$nupkgdest = $packageDestPath + "atlastestcenter.3.0.0.nupkg"
+		Download-Data -DataUrl $nupkgurl -DestPath $nupkgdest
+		Download-Data -DataUrl $nuspecurl -DestPath $nuspecdest
+
+		$expression = "$ChocoExePath install -y -f --acceptlicense $checkSumFlags --no-progress --stoponfirstfailure $_ -dv --force -s " + $packageDestPath
+
     	Invoke-ExpressionImpl -Expression $expression
     }
 }
