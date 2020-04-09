@@ -1,7 +1,11 @@
 [CmdletBinding()]
 param(
     # Space-, comma- or semicolon-separated list of Chocolatey packages.
-    [string] $Packages
+    [string] $Packages,
+
+    [string] $Username,
+
+    [string] $Password
 )
 
 function Handle-LastError
@@ -100,8 +104,8 @@ function Invoke-ChocolateyPackageInstaller
 $Password = Get-TempPassword
 $UserName = "tempuser"
 try {
-	Add-LocalAdminUser -UserName $UserName -Password $password | Out-Null
-	Invoke-ChocolateyPackageInstaller -UserName $UserName -Password $Password -PackageList $Packages
+	#Add-LocalAdminUser -UserName $UserName -Password $password | Out-Null
+	Invoke-ChocolateyPackageInstaller -UserName $Username -Password $Password -PackageList $Packages
 }
 catch
 {
@@ -109,5 +113,5 @@ catch
 }
 finally
 {
-    Remove-LocalAdminUser -UserName $UserName
+    #Remove-LocalAdminUser -UserName $UserName
 }
