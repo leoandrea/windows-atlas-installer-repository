@@ -115,7 +115,7 @@ function Install-Packages
             $checkSumFlags = $checkSumFlags + " --ignore-checksums "
         }
 
-		$packageDestPath = "$HOME/Desktop/InstallDir/"
+		$packageDestPath = "C:/Users/andrealeo/Desktop/InstallDir/"
 		$packageDestPathExists = Test-Path $packageDestPath -PathType Container
 		if ($packageDestPathExists)
 		{
