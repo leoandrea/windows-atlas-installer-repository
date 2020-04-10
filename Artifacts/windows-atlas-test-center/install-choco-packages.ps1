@@ -129,10 +129,6 @@ function Install-Packages
 		$nupkgdest = $packageDestPath + "atlastestcenter.3.0.0.nupkg"
 		Download-Data -DataUrl $nupkgurl -DestPath $nupkgdest
 		Download-Data -DataUrl $nuspecurl -DestPath $nuspecdest
-
-		$expression = "$ChocoExePath install -y -f --acceptlicense $checkSumFlags --no-progress --stoponfirstfailure $_ -dv --force -s " + $packageDestPath
-
-    	Invoke-ExpressionImpl -Expression $expression
     }
 }
 
