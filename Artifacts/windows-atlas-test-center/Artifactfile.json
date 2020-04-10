@@ -10,6 +10,6 @@
     "iconUri": "https://atlas-testing.webscience.it/artifacts/AtlasTestCenter/atlas_test_center.png",
     "targetOsType": "Windows",
     "runCommand": {
-        "commandToExecute": "[concat('AtlasTestCenterInstaller.exe C:\Users\andrealeo\Desktop\InstallDir')]"
+        "commandToExecute": "['AtlasTestCenterInstaller.exe C:/Users/andrealeo/Desktop/InstallDir']"
     }
 }
