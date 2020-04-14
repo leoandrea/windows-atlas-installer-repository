@@ -2,7 +2,7 @@
     "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2016-11-28/dtlArtifacts.json",
     "title": "Atlas Postazione Studente 3.0.0",
     "publisher": "WebScience",
-    "description": "Installa Atlas Postazione Studente 3.0.0 tramite il package manager Chocolatey",
+    "description": "Installa Atlas Postazione Studente 3.0.0 tramite installer personalizzato",
     "tags": [
         "Windows",
         "AtlasPostazioneStudente"
@@ -10,6 +10,6 @@
     "iconUri": "https://atlas-testing.webscience.it/artifacts/AtlasPostazioneStudente/atlas_logo.png",
     "targetOsType": "Windows",
     "runCommand": {
-        "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./install-choco-packages.ps1 -Packages ', 'atlaspostazionestudente', '\"')]"
+        "commandToExecute": "['AtlasPostazioneStudenteInstaller.exe']"
     }
 }
