@@ -9,7 +9,16 @@
     ],
     "iconUri": "https://atlas-testing.webscience.it/artifacts/AtlasPostazioneStudente/atlas_logo.png",
     "targetOsType": "Windows",
+	 "parameters": {
+		"serverIpAddress": {
+			"type": "string",
+			"displayName": "Indirizzo IP Server TC",
+			"description": "Inserire l'indirizzo IP del server di Test Center associato",
+			"defaultValue": "",
+			"allowEmpty": true
+			}
+		}
     "runCommand": {
-        "commandToExecute": "['AtlasTestCenterInstaller.exe examination-desk']"
+        "commandToExecute": "[concat('AtlasTestCenterInstaller.exe examination-desk ', parameters('serverIpAddress'))]"
     }
 }
