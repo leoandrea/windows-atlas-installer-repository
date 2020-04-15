@@ -17,7 +17,7 @@
 			"defaultValue": "",
 			"allowEmpty": true
 			}
-		}
+		},
     "runCommand": {
         "commandToExecute": "[concat('AtlasTestCenterInstaller.exe examination-desk ', parameters('serverIpAddress'))]"
     }
