@@ -1,0 +1,15 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2016-11-28/dtlArtifacts.json",
+    "title": "Atlas Test Center 3.0.0 UPDATER",
+    "publisher": "WebScience",
+    "description": "Aggiorna Atlas Test Center 3.0.0 alla versione Virtual Lab con alert",
+    "tags": [
+        "Windows",
+        "AtlasTestCenter"
+    ],
+    "iconUri": "https://atlas-testing.webscience.it/artifacts/AtlasTestCenter/atlas_test_center.png",
+    "targetOsType": "Windows",
+    "runCommand": {
+        "commandToExecute": "['AtlasTestCenterAlertUpdater.exe test-center']"
+    }
+}
